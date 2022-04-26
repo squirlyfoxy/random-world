@@ -23,6 +23,7 @@ link_directories(
 
 add_subdirectory(lib/glad)
 add_subdirectory(lib/glfw)
+add_subdirectory(lib/assimp)
 
 file(GLOB My_Source_Files 
     src/*/*.cpp

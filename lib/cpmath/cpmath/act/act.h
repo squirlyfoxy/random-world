@@ -28,7 +28,7 @@ inline vec2 normalize(vec2 v) {
 inline float angle(vec2 a, vec2 b) {
     float dot = a.x * b.x + a.y * b.y;
     float det = a.x * b.y - a.y * b.x;
-    return atan2(det, dot) * 180 / M_PI;
+    return atan2(det, dot) * 180 / 3.14;
 }
 
 #endif
