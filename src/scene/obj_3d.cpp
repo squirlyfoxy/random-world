@@ -33,15 +33,7 @@ bool operator==(const Vertex& a, const Vertex& b) {
     ); 
 }
 
-Object Read3DObject(const char *file)
-{
-    Assimp::Importer importer;
-    const aiScene *scene = importer.ReadFile(file, aiProcess_Triangulate | aiProcess_FlipUVs); 
-    if (!scene || scene->mFlags & AI_SCENE_FLAGS_INCOMPLETE || !scene->mRootNode) {
-        std::cout << "ERROR::ASSIMP::" << importer.GetErrorString() << std::endl;
-        return Object();
-    }
-
+Object InitObject(const aiScene *scene) {
     Object object;
     object.vertices.reserve(scene->mMeshes[0]->mNumVertices);
     object.indices.reserve(scene->mMeshes[0]->mNumFaces * 3);
@@ -88,6 +80,18 @@ Object Read3DObject(const char *file)
     return object;
 }
 
+Object Read3DObject(const char *file)
+{
+    Assimp::Importer importer;
+    const aiScene *scene = importer.ReadFile(file, aiProcess_Triangulate | aiProcess_FlipUVs); 
+    if (!scene || scene->mFlags & AI_SCENE_FLAGS_INCOMPLETE || !scene->mRootNode) {
+        std::cout << "ERROR::ASSIMP::" << importer.GetErrorString() << std::endl;
+        return Object();
+    }
+
+    return InitObject(scene);
+}
+
 Object Read3DObject(void* data) {
     Assimp::Importer importer;
     const aiScene *scene = importer.ReadFileFromMemory(data, strlen(static_cast<const char*>(data)), aiProcess_Triangulate | aiProcess_FlipUVs); 
@@ -96,49 +100,6 @@ Object Read3DObject(void* data) {
         return Object();
     }
 
-    Object object;
-    object.vertices.reserve(scene->mMeshes[0]->mNumVertices);
-    object.indices.reserve(scene->mMeshes[0]->mNumFaces * 3);
-
-    // https://vulkan-tutorial.com/Loading_models
-    std::unordered_map<Vertex, uint32_t> uniqueVertices{};
-
-    const struct aiMesh* mesh = scene->mMeshes[0];
-
-    for (unsigned int i = 0; i < mesh->mNumFaces; i++) {
-        const struct aiFace& face = mesh->mFaces[i];
-
-        // Vertices
-        for (unsigned int j = 0; j < face.mNumIndices; j++) {
-            Vertex vertex;
-            vertex.position = {
-                mesh->mVertices[face.mIndices[j]].x,
-                mesh->mVertices[face.mIndices[j]].y,
-                mesh->mVertices[face.mIndices[j]].z
-            };
-
-            vertex.normal = {
-                mesh->mNormals[face.mIndices[j]].x,
-                mesh->mNormals[face.mIndices[j]].y,
-                mesh->mNormals[face.mIndices[j]].z
-            };
-
-            vertex.texcoord = {
-                mesh->mTextureCoords[0][face.mIndices[j]].x,
-                mesh->mTextureCoords[0][face.mIndices[j]].y
-            };
-
-            if (uniqueVertices.count(vertex) == 0) {
-                uniqueVertices[vertex] = static_cast<uint32_t>(object.vertices.size());
-                object.vertices.push_back(vertex);
-            }
-
-            object.indices.push_back(uniqueVertices[vertex]);
-        }
-    }
-
-    std::cout << "Loaded " << scene->mMeshes[0]->mName.C_Str() << " with " << object.vertices.size() << " vertices and " << object.indices.size() << " indices." << std::endl;
-
-    return object;
+    return InitObject(scene);
 }
 
