@@ -4,3 +4,9 @@
 [submodule "lib/cute_headers"]
 	path = lib/cute_headers
 	url = https://github.com/RandyGaul/cute_headers.git
+[submodule "lib/zip"]
+	path = lib/zip
+	url = https://github.com/kuba--/zip.git
+[submodule "lib/SQLiteCpp"]
+	path = lib/SQLiteCpp
+	url = https://github.com/SRombauts/SQLiteCpp.git
