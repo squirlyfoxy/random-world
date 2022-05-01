@@ -34,6 +34,7 @@ add_subdirectory(lib/glfw)
 add_subdirectory(lib/assimp)
 add_subdirectory(lib/zip)
 add_subdirectory(lib/SQLiteCpp)
+add_subdirectory(lib/mimalloc)
 
 file(GLOB My_Source_Files 
     src/*/*.cpp
@@ -43,5 +44,4 @@ file(GLOB My_Source_Files
 )
 
 add_executable(ogl ${My_Source_Files})
-target_link_libraries(ogl glfw glad assimp zip SQLiteCpp)
-    
+target_link_libraries(ogl glfw glad assimp zip SQLiteCpp mimalloc)

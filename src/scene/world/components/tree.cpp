@@ -56,6 +56,9 @@ Tree NewTree(vec3 pos) {
     tree.model = mat4_identity();
     tree.model = mat4_translate(tree.model, pos);
 
+    // Random rotation
+    tree.model = mat4_rotate(tree.model, (float)rand() / RAND_MAX * 360.0f, vec3_make(0.0f, 1.0f, 0.0f));
+
     return tree;
 }
 

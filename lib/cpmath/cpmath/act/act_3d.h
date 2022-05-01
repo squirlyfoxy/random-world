@@ -9,10 +9,10 @@ inline bool is_object_in_camera_view(vec3 obj_position, vec3 camera_position, fl
 {
     float angle = atan2(obj_position.x - camera_position.x, obj_position.z - camera_position.z);
     float angle_diff = angle - camera_yaw;
-    if (angle_diff < -3.14)
-        angle_diff += 2 * 3.14;
-    if (angle_diff > 3.14)
-        angle_diff -= 2 * 3.14;
+    if (angle_diff < -CP_PI)
+        angle_diff += 2 * CP_PI;
+    if (angle_diff > CP_PI)
+        angle_diff -= 2 * CP_PI;
 
     return abs(angle_diff) < camera_fov * mul;
 }
