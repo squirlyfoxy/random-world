@@ -1,0 +1,6 @@
+[submodule "lib/glfw"]
+	path = lib/glfw
+	url = https://github.com/glfw/glfw.git
+[submodule "lib/cute_headers"]
+	path = lib/cute_headers
+	url = https://github.com/RandyGaul/cute_headers.git
