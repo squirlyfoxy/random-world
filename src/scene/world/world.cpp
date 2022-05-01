@@ -49,10 +49,10 @@ World::World() {
     basic_lights.push_back(light);
 
     // Textures
-    mWTexture.path = "assets/texture_grass.png";
-    mWTextureSpecular.path = "assets/texture_grass_specular.png";
-    mWoordTexture.path = "assets/wood.png";
-    mWoordTextureSpecular.path = "assets/wood_specular.png";
+    mWTexture.path = "texture_grass.png";
+    mWTextureSpecular.path = "texture_grass_specular.png";
+    mWoordTexture.path = "texture_wood.png";
+    mWoordTextureSpecular.path = "texture_wood_specular.png";
     Texture_Load(&mWTexture);
     Texture_Load(&mWTextureSpecular);
     Texture_Load(&mWoordTexture);

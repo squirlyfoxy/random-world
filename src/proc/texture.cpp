@@ -1,20 +1,25 @@
 #include "texture.h"
 
+#include "assets_manager.h"
+
 #include <stdlib.h>
 #include <cstdio>
+#include <iostream>
 
 #include <glad/glad.h>
 
 #include "../../lib/cute_headers/cute_png.h"
 
 void Texture_Load(Texture* texture) {
+    std::cout << "Loading texture: " << texture->path << std::endl;
+
     //Load image
-    int width, height, nrChannels;
-    cp_image_t img = cp_load_png(texture->path.c_str());
-    if (img.pix == NULL) {
-        printf("Failed to load texture %s!\n", texture->path);
-        return;
-    }
+    int width, height;
+    size_t size_data = 0;
+    void* data = LoadAsset(texture->path.c_str(), &size_data);
+    std::cout << "Size data: " << size_data << std::endl;
+    cp_image_t img = cp_load_png_mem(data, size_data);
+
     width = img.w;
     height = img.h;
 

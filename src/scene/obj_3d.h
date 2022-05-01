@@ -17,5 +17,6 @@ struct Object {
 };
 
 Object Read3DObject(const char *file);
+Object Read3DObject(void* data);
 
 #endif

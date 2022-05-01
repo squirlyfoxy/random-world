@@ -27,7 +27,11 @@
 *.out
 *.app
 *.pdb
+*.zip
 ogl
+assetter
+
+assets_db.sqlite
 
 .vscode/*
 build/*

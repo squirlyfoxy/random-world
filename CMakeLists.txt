@@ -15,12 +15,14 @@ set(ASSIMP_BUILD_ASSIMP_TOOLS OFF CACHE BOOL "" FORCE)
 set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/../bin/lib)
 set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/../bin/lib)
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/../bin)
+set(CMAKE_DISABLE_TESTING 1)
 
 #Include lib/cute_headers, lib/glm
 include_directories(
     lib/cute_headers
     lib/cpmath
     lib/perlin-noise
+    lib/zip/src
 )
 
 link_directories(
@@ -30,6 +32,8 @@ link_directories(
 add_subdirectory(lib/glad)
 add_subdirectory(lib/glfw)
 add_subdirectory(lib/assimp)
+add_subdirectory(lib/zip)
+add_subdirectory(lib/SQLiteCpp)
 
 file(GLOB My_Source_Files 
     src/*/*.cpp
@@ -39,5 +43,5 @@ file(GLOB My_Source_Files
 )
 
 add_executable(ogl ${My_Source_Files})
-target_link_libraries(ogl glfw glad assimp)
+target_link_libraries(ogl glfw glad assimp zip SQLiteCpp)
     

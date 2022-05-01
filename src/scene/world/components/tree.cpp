@@ -1,5 +1,7 @@
 #include "tree.h"
 
+#include "../../../proc/assets_manager.h"
+
 #include <glad/glad.h>
 
 #include <cpmath/act/act_mat4.h>
@@ -14,7 +16,8 @@ unsigned int tree_vbo;
 unsigned int tree_ebo;
 
 void InitializeTree() {
-    tree_object = Read3DObject(TREE_OBJ);
+    size_t size_data = 0;
+    tree_object = Read3DObject(LoadAsset(TREE_OBJ, &size_data));
 
     // Buffers
     glGenVertexArrays(1, &tree_vao);

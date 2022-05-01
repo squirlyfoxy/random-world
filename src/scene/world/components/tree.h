@@ -1,7 +1,7 @@
 #ifndef __TREE_H__
 #define __TREE_H__
 
-#define TREE_OBJ "assets/objs/MapleTree.obj"
+#define TREE_OBJ "3d_tree.obj"
 
 #include "../../obj_3d.h"
 #include "../../../proc/shaders/shaders.h"
