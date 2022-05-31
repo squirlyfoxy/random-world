@@ -17,6 +17,9 @@ set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/../bin/lib)
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/../bin)
 set(CMAKE_DISABLE_TESTING 1)
 
+##c++ 17
+set(CMAKE_CXX_STANDARD 17)
+
 #Include lib/cute_headers, lib/glm
 include_directories(
     lib/cute_headers
