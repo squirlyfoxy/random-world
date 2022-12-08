@@ -1,15 +1,15 @@
 # copied from https://gitlab.kitware.com/cmake/community/wikis/FAQ#can-i-do-make-uninstall-with-cmake
-if(NOT EXISTS "/home/squirlyfoxy/random-world/external/assetter/build/install_manifest.txt")
-  message(FATAL_ERROR "Cannot find install manifest: /home/squirlyfoxy/random-world/external/assetter/build/install_manifest.txt")
-endif(NOT EXISTS "/home/squirlyfoxy/random-world/external/assetter/build/install_manifest.txt")
+if(NOT EXISTS "C:/Users/foxch/random-world/external/assetter/build/install_manifest.txt")
+  message(FATAL_ERROR "Cannot find install manifest: C:/Users/foxch/random-world/external/assetter/build/install_manifest.txt")
+endif(NOT EXISTS "C:/Users/foxch/random-world/external/assetter/build/install_manifest.txt")
 
-file(READ "/home/squirlyfoxy/random-world/external/assetter/build/install_manifest.txt" files)
+file(READ "C:/Users/foxch/random-world/external/assetter/build/install_manifest.txt" files)
 string(REGEX REPLACE "\n" ";" files "${files}")
 foreach(file ${files})
   message(STATUS "Uninstalling $ENV{DESTDIR}${file}")
   if(IS_SYMLINK "$ENV{DESTDIR}${file}" OR EXISTS "$ENV{DESTDIR}${file}")
     exec_program(
-      "/usr/bin/cmake" ARGS "-E remove \"$ENV{DESTDIR}${file}\""
+      "C:/Program Files/CMake/bin/cmake.exe" ARGS "-E remove \"$ENV{DESTDIR}${file}\""
       OUTPUT_VARIABLE rm_out
       RETURN_VALUE rm_retval
       )
